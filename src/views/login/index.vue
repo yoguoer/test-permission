@@ -25,6 +25,7 @@
             ></el-input>
           </el-form-item>
         </el-form>
+        <el-button @click="goPage()">点一下</el-button>
       </div>
     </div>
   </div>
@@ -33,11 +34,17 @@
 <script setup lang="ts">
 import loginimg from "@/assets/images/loginimg.png";
 import { ref, nextTick, reactive } from "vue"
+import { useRouter } from 'vue-router'; 
 
 const formdata = reactive({
     userName: "",
     passWord: "",
   })
+
+const router = useRouter();  
+const goPage= function(){
+  router.push('/goodWorld')
+}
 </script>
 
 <style lang="scss" scoped>

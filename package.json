@@ -3,6 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "main": "main.ts",
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc && vite build",
@@ -12,10 +13,9 @@
     "@element-plus/icons-vue": "^2.3.1",
     "element-plus": "^2.7.1",
     "pinia": "^2.1.7",
-    "vivien-permission": "^1.0.2",
+    "vivien-permission": "^1.0.75",
     "vue": "^3.4.21",
-    "vue-router": "^4.3.2",
-    "xw-ui": "^1.0.42"
+    "xw-ui": "^1.0.43"
   },
   "devDependencies": {
     "@types/node": "^20.12.7",
