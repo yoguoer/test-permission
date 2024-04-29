@@ -7,17 +7,32 @@ import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 import zhCn from "element-plus/es/locale/lang/zh-cn";
 import { createPinia } from 'pinia'
 import { XElementPlusInstall } from 'xw-ui/element-plus'
-import { options } from "./permission" 
+import { options } from "./permission"
 import initPermission from "vivien-permission"
 import router from "@/router"
+import { setKeys } from "vivien-permission"
+import { setStorage } from "vivien-permission"
+
+// 创建一个只包含 token_key 字段的 TokenKeyOptions 对象  
+const myKeyOptions = {
+    token_key: 'new_token_key',
+    // oa_token_keys: ['new_siamtgt', 'new_siamjwt'],
+    // ...其他keyOptions  
+};
+// 调用 setKeys 方法来更新 token_key，其他字段将保持默认值  
+setKeys(myKeyOptions);
+const storageOptions = {
+    type: "localStorage",
+}
+setStorage(storageOptions)
 
 const app = createApp(App);
 const pinia = createPinia()
 
 app
-.use(router)
-.use(ElementPlus, { locale: zhCn })
-.use(pinia)
+    .use(router)
+    .use(ElementPlus, { locale: zhCn })
+    .use(pinia)
 
 // 注册XElementPlus所有组件
 XElementPlusInstall(app)
