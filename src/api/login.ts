@@ -3,7 +3,6 @@ export function getAuthList() {
         "menuNames": ['HelloWorld','badWorld'],
         "rule": ['/HelloWorld','/badWorld']
     };  
-    console.log("🚀 ~ getAuthList ~ data:", data)
     return data
 }
 

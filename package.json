@@ -13,8 +13,9 @@
     "@element-plus/icons-vue": "^2.3.1",
     "element-plus": "^2.7.1",
     "pinia": "^2.1.7",
-    "vivien-permission": "^1.0.75",
+    "vivien-permission": "^1.0.78",
     "vue": "^3.4.21",
+    "xu-ui": "^0.2.3",
     "xw-ui": "^1.0.43"
   },
   "devDependencies": {
