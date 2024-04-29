@@ -33,7 +33,7 @@
 
 <script setup lang="ts">
 import loginimg from "@/assets/images/loginimg.png";
-import { ref, nextTick, reactive } from "vue"
+import { reactive } from "vue"
 import { useRouter } from 'vue-router'; 
 
 const formdata = reactive({

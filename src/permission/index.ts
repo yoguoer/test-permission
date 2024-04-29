@@ -8,7 +8,7 @@ import { ElMessage } from 'element-plus'
 
 const domain = '.tcl.com'
 const publicPath = './'
-// //定义一个符合 permissionOptions 接口的对象 
+//定义一个符合 permissionOptions 接口的对象 
 export const options = {
   publicPath, // 历史记录路径
   router,  // 路由对象（可选）

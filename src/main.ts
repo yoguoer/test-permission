@@ -9,12 +9,13 @@ import { createPinia } from 'pinia'
 import { XElementPlusInstall } from 'xw-ui/element-plus'
 import { options } from "./permission" 
 import initPermission from "vivien-permission"
-import router from "@/router"
+// import router from "@/router"
 
 const app = createApp(App);
 const pinia = createPinia()
 
-app.use(router)
+app
+// .use(router)
 .use(ElementPlus, { locale: zhCn })
 .use(pinia)
 
