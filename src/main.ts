@@ -10,8 +10,7 @@ import { XElementPlusInstall } from 'xw-ui/element-plus'
 import { options } from "./permission"
 import initPermission from "vivien-permission"
 import router from "@/router"
-import { setKeys } from "vivien-permission"
-import { setStorage } from "vivien-permission"
+import { setKeys, setStorage } from "vivien-permission"
 
 // 创建一个只包含 token_key 字段的 TokenKeyOptions 对象  
 const myKeyOptions = {
@@ -37,13 +36,20 @@ app
 // 注册XElementPlus所有组件
 XElementPlusInstall(app)
 
-await initPermission(app, options)
+
+await initPermission(app, options, (params:any)=> {
+    console.log("🚀 ~ params=====:", params)
+    params.SetToken({token:"3423432"})
+})
 
 app.mount('#app')
+
+
+
+
 //全局注册图标组件
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
     app.component(key, component)
 }
-
 
 
