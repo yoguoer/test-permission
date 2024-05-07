@@ -12,7 +12,7 @@
             <el-input
               placeholder="账号"
               id="userPhone"
-              v-model="formdata.userPhone"
+              v-model="formdata.userName"
             ></el-input>
           </el-form-item>
           <el-form-item prop="passWord">
@@ -25,6 +25,7 @@
             ></el-input>
           </el-form-item>
         </el-form>
+        <el-button @click="submit(formdata)"> 登录 </el-button>
         <el-button @click="goPage('goodWorld')"> good </el-button>
         <el-button @click="goPage('badWorld')"> bad </el-button>
       </div>
@@ -34,8 +35,10 @@
 
 <script setup lang="ts">
 import loginimg from "@/assets/images/loginimg.png";
-import { reactive } from "vue"
+import { reactive,ref } from "vue"
 import { useRouter } from 'vue-router'; 
+import axios from 'axios';
+import Storage from "@/utils/storage";
 
 const formdata = reactive({
     userName: "",
@@ -51,6 +54,45 @@ const goPage = function(path:string){
     router.push('/badWorld')
   }
 }
+
+let resOa=ref(null)
+let resToken=ref(null)
+
+const submit = function(formdata) {  // 修改函数定义，去掉赋值操作符，并修正参数名  
+  axios({    
+    url: "https://rd-mokadisplay.tcl.com/srdpm-api/api/login",    
+    method: "post",    
+    headers: {    
+      "Content-Type": "application/json" // 正确设置 Content-Type    
+    },    
+    data: {    
+      username: formdata.userName,  // 使用传入的参数formdata，而不是formData（注意大小写）  
+      password: formdata.passWord // 确保属性名与你的formdata对象中的属性名匹配    
+    }    
+  }).then(function (response) { 
+   // 直接处理响应数据      
+   const {  
+      token = null, // 假设这是响应体中的 token  
+      oa = { ticketName: null, ticketValue: null } // 假设这是响应体中的 oa 对象  
+    } = response.data.data;  
+
+    console.log("🚀 ~ response ~", response.data.data,token,oa)
+  
+    resToken.value = token || ''; 
+    console.log("🚀 ~ submit ~ resToken.value:", resToken.value);  
+  
+    resOa.value = oa;
+    console.log("🚀 ~ submit ~ resOa.value:", resOa.value);  
+  
+    Storage.setCookies('LtpaToken', resToken.value);  
+    if (resOa.value.ticketName) { // 使用 resOa.value 来访问响应式引用中的值  
+      Storage.setCookies(resOa.value.ticketName, resOa.value.ticketValue);  
+    }  
+  }).catch(function (error) {    
+    // 添加错误处理    
+    console.error(error);    
+  });    
+}; 
 </script>
 
 <style lang="scss" scoped>
@@ -112,3 +154,11 @@ const goPage = function(path:string){
   }
 }
 </style>
+
+function axios(arg0: { url: string; method: string; contentType: string; data: { username: any; password: any; }; }) {
+  throw new Error("Function not implemented.");
+}
+
+function axios(arg0: { url: string; method: string; contentType: string; data: { username: any; password: any; }; }) {
+  throw new Error("Function not implemented.");
+}

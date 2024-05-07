@@ -14,14 +14,13 @@ import { setKeys, setStorage } from "vivien-permission"
 
 // 创建一个只包含 token_key 字段的 TokenKeyOptions 对象  
 const myKeyOptions = {
-    token_key: 'new_token_key',
     // oa_token_keys: ['new_siamtgt', 'new_siamjwt'],
     // ...其他keyOptions  
 };
 // 调用 setKeys 方法来更新 token_key，其他字段将保持默认值  
 setKeys(myKeyOptions);
 const storageOptions = {
-    type: "localStorage",
+    type: "cookie",
 }
 setStorage(storageOptions)
 
@@ -39,7 +38,7 @@ XElementPlusInstall(app)
 
 await initPermission(app, options, (params:any)=> {
     console.log("🚀 ~ params=====:", params)
-    params.SetToken({token:"3423432"})
+    // params.SetToken({token:"3423432"})
 })
 
 app.mount('#app')
