@@ -14,10 +14,11 @@
     "axios": "^1.6.8",
     "element-plus": "^2.7.1",
     "pinia": "^2.1.7",
+    "v-permission": "^1.0.14",
     "vivien-permission": "^1.0.94",
     "vue": "^3.4.21",
     "xu-ui": "^0.2.3",
-    "xw-ui": "^1.0.58"
+    "xw-ui": "^1.0.70"
   },
   "devDependencies": {
     "@types/node": "^20.12.7",

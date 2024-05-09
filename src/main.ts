@@ -8,17 +8,19 @@ import zhCn from "element-plus/es/locale/lang/zh-cn";
 import { createPinia } from 'pinia'
 import { XElementPlusInstall } from 'xw-ui/element-plus'
 import { options } from "./permission"
+import permissionList from './permission'
 import initPermission from "vivien-permission"
 import router from "@/router"
 import { setKeys, setStorage } from "vivien-permission"
+import permission from "v-permission" 
 
 // 创建一个只包含 token_key 字段的 TokenKeyOptions 对象  
-const myKeyOptions = {
+// const myKeyOptions = {
     // oa_token_keys: ['new_siamtgt', 'new_siamjwt'],
     // ...其他keyOptions  
-};
+// };
 // 调用 setKeys 方法来更新 token_key，其他字段将保持默认值  
-setKeys(myKeyOptions);
+// setKeys(myKeyOptions);
 const storageOptions = {
     type: "cookie",
 }
@@ -35,15 +37,24 @@ app
 // 注册XElementPlus所有组件
 XElementPlusInstall(app)
 
-
 await initPermission(app, options, (params:any)=> {
     console.log("🚀 ~ params=====:", params)
     // params.SetToken({token:"3423432"})
 })
 
+
+const permissions = [
+    '/add-add'
+]
+const voptions = {
+    permissionList,
+    permissions
+}
+// 使用插件并传入选项
+app.use(permission, voptions)
+console.log("🚀 ~ app:", app)
+
 app.mount('#app')
-
-
 
 
 //全局注册图标组件
